@@ -6,18 +6,30 @@
     <title>Bom Sabor - Restaurante</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
+    <!-- Popup de confirmação de pedido -->
+<div id="orderConfirmationPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closeOrderConfirmationPopup()">&times;</span>
+        <i class="fas fa-check-circle check-icon"></i>
+        <h3>Pedido Enviado!</h3>
+        <p>Seu pedido foi enviado para a cozinha e está sendo preparado.</p>
+    </div>
+</div>
+
     <!-- Header com a barra de navegação -->
     <header>
+        
         <nav class="top-bar">
             <div class="menu">
                 <div class="logo">🍽️</div>
                 <span class="table-info">Mesa 29</span>
                 <div class="search-container">
-                    <input type="text" placeholder="Buscar" class="search-bar">
-                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Buscar" class="search-bar" id="searchBar" oninput="searchProducts()">
+                    <i class="fas fa-search search-icon" onclick="toggleSearch()"></i>
+                    
+                    
                 </div>
                 <button class="call-button" onclick="callWaiter()">
                     <i class="fas fa-bell"></i> Chamar Garçom
@@ -28,6 +40,7 @@
                 <button class="cart-button" onclick="openCart()">
                     <i class="fas fa-shopping-cart"></i> Carrinho de Compras
                 </button>
+                
             </div>
         </nav>
     </header>
@@ -39,8 +52,8 @@
             <h2>Produtos</h2>
             <div class="products-container">
                 <!-- Cartão do Produto: Hambúrguer Clássico -->
-                <div class="product-card" onclick="showProductDetail('Hambúrguer Clássico', 'hamburguer.webp', 'Delicioso hambúrguer com queijo, alface e tomate', 24.90)">
-                    <img src="hamburguer.webp" alt="Hambúrguer Clássico" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Hambúrguer Clássico', 'Imagens/hamburguer.webp', 'Delicioso hambúrguer com queijo, alface e tomate', 24.90)">
+                    <img src="Imagens/hamburguer.webp" alt="Hambúrguer Clássico" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer Clássico</h3>
                         <span class="price">R$ 24,90</span>
@@ -48,8 +61,8 @@
                 </div>
 
                 <!-- Cartão do Produto: Hambúrguer Cheddar -->
-                <div class="product-card" onclick="showProductDetail('Hambúrguer Cheddar', 'lanche 5.jpg', 'Hambúrguer com queijo cheddar e cebola caramelizada', 29.90)">
-                    <img src="imagens/lanche 5.jpg" alt="Hambúrguer Cheddar" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Hambúrguer Cheddar', 'Imagens/lanche%205.jpg', 'Hambúrguer com queijo cheddar e cebola caramelizada', 29.90)">
+                    <img src="Imagens/lanche%205.jpg" alt="Hambúrguer Cheddar" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer Cheddar</h3>
                         <span class="price">R$ 29,90</span>
@@ -57,8 +70,8 @@
                 </div>
 
                 <!-- Cartão do Produto: Hambúrguer BBQ -->
-                <div class="product-card" onclick="showProductDetail('Hambúrguer BBQ', 'lanche 4.jpg', 'Hambúrguer com molho barbecue e bacon', 32.90)">
-                    <img src="lanche 4.jpg" alt="Hambúrguer BBQ" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Hambúrguer BBQ', 'Imagens/lanche%204.jpg', 'Hambúrguer com molho barbecue e bacon', 32.90)">
+                    <img src="Imagens/lanche%204.jpg" alt="Hambúrguer BBQ" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer BBQ</h3>
                         <span class="price">R$ 32,90</span>
@@ -66,8 +79,8 @@
                 </div>
 
                 <!-- Cartão do Produto: Hambúrguer Vegano -->
-                <div class="product-card" onclick="showProductDetail('Hambúrguer Vegano', 'lanche 3.webp', 'Hambúrguer vegano com grão-de-bico e especiarias', 27.90)">
-                    <img src="lanche 3.webp" alt="Hambúrguer Vegano" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Hambúrguer Vegano', 'Imagens/lanche%203.webp', 'Hambúrguer vegano com grão-de-bico e especiarias', 27.90)">
+                    <img src="Imagens/lanche%203.webp" alt="Hambúrguer Vegano" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer Vegano</h3>
                         <span class="price">R$ 27,90</span>
@@ -75,8 +88,8 @@
                 </div>
 
                 <!-- Cartão do Produto: Hambúrguer Duplo -->
-                <div class="product-card" onclick="showProductDetail('Hambúrguer Duplo', 'lanche 2.webp', 'Dois hambúrgueres suculentos com todos os acompanhamentos', 39.90)">
-                    <img src="lanche 2.webp" alt="Hambúrguer Duplo" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Hambúrguer Duplo', 'Imagens/lanche%202.webp', 'Dois hambúrgueres suculentos com todos os acompanhamentos', 39.90)">
+                    <img src="Imagens/lanche%202.webp" alt="Hambúrguer Duplo" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer Duplo</h3>
                         <span class="price">R$ 39,90</span>
@@ -84,8 +97,8 @@
                 </div>
 
                 <!-- Cartão do Produto: Brownie com Sorvete -->
-                <div class="product-card" onclick="showProductDetail('Brownie com Sorvete', 'sobremesa.webp', 'Brownie de chocolate com sorvete de baunilha', 14.90)">
-                    <img src="sobremesa.webp" alt="Brownie com Sorvete" class="product-img">
+                <div class="product-card" onclick="showProductDetail('Brownie com Sorvete', 'Imagens/sobremesa.webp', 'Brownie de chocolate com sorvete de baunilha', 14.90)">
+                    <img src="Imagens/sobremesa.webp" alt="Brownie com Sorvete" class="product-img">
                     <div class="product-info">
                         <h3>Brownie com Sorvete</h3>
                         <span class="price">R$ 14,90</span>
@@ -137,9 +150,24 @@
                 </div>
             </div>
         </div>
+        <!-- Popup de confirmação -->
+<div id="sendBillPopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <p>A conta foi enviada para o garçom!</p>
+        <button onclick="closeSendBillPopup()">Fechar</button>
+    </div>
+</div>
+
+        
     </main>
 
     <!-- Inclusão do JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Popup de Notificação de Produto Adicionado -->
+<div class="toast" id="toast">
+    <p id="toast-message">Produto adicionado ao carrinho!</p>
+</div>
+
 </body>
 </html>

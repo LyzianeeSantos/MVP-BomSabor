@@ -76,10 +76,19 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    justify-content: center; /* Centraliza o conteúdo dentro do botão */
+    margin: 0 auto; /* Garante que o botão seja centralizado */
+    text-align: center; 
+    width: 200px; 
 }
 
 .call-button:hover, .account-button:hover, .cart-button:hover, 
 .add-to-cart:hover, .checkout-button:hover {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o botão e o conteúdo */
+    text-align: center;
+    justify-content: center; /* Certifica-se que o botão e o conteúdo estão centralizados verticalmente */
     background-color: #b11818;
     transform: scale(1.05);
 }
@@ -215,4 +224,151 @@ main {
     0% { transform: scale(0); }
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
+}
+
+/* Estilo para o toast */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50; /* Cor verde para sucesso */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    display: none; /* Inicialmente escondido */
+    opacity: 0; /* Inicia com opacidade 0 */
+    transition: opacity 0.5s ease-out; /* Transição suave */
+    z-index: 9999; /* Para garantir que o toast fique por cima */
+}
+
+/* Estilo para a animação */
+.toast.show {
+    display: block;
+    opacity: 1; /* Torna o toast visível */
+}
+
+/* Estilo do popup de confirmação de pedido */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    animation: slide-down 0.5s ease-out;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-popup:hover {
+    color: #d11f1f;
+}
+
+.check-icon {
+    font-size: 50px;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.popup-content h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.send-bill-button {
+    background-color: #28a745; /* Cor verde para destacar */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.send-bill-button:hover {
+    background-color: #218838; /* Cor mais escura ao passar o mouse */
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.popup-content button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup-content button:hover {
+    background-color: #0056b3;
 }
