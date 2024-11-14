@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bom Sabor - Restaurante</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="Scripts e Estilos/style.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
+    <!-- Header com a barra de navegação -->
     <header>
         <nav class="top-bar">
             <div class="menu">
@@ -18,18 +19,26 @@
                     <input type="text" placeholder="Buscar" class="search-bar">
                     <i class="fas fa-search search-icon"></i>
                 </div>
-                <button class="call-button" onclick="callWaiter()"><i class="fas fa-bell"></i> Chamar Garçom</button>
-                <button class="account-button" onclick="openAccount()"><i class="fas fa-user"></i> Minha Conta</button>
-                <button class="cart-button" onclick="openCart()"><i class="fas fa-shopping-cart"></i> Carrinho de Compras</button>
+                <button class="call-button" onclick="callWaiter()">
+                    <i class="fas fa-bell"></i> Chamar Garçom
+                </button>
+                <button class="account-button" onclick="openAccount()">
+                    <i class="fas fa-user"></i> Minha Conta
+                </button>
+                <button class="cart-button" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i> Carrinho de Compras
+                </button>
             </div>
         </nav>
     </header>
 
+    <!-- Conteúdo principal da página -->
     <main>
+        <!-- Seção de produtos -->
         <section class="products-section">
             <h2>Produtos</h2>
             <div class="products-container">
-                <!-- Produtos -->
+                <!-- Cartão do Produto: Hambúrguer Clássico -->
                 <div class="product-card" onclick="showProductDetail('Hambúrguer Clássico', 'hamburguer.webp', 'Delicioso hambúrguer com queijo, alface e tomate', 24.90)">
                     <img src="hamburguer.webp" alt="Hambúrguer Clássico" class="product-img">
                     <div class="product-info">
@@ -37,13 +46,17 @@
                         <span class="price">R$ 24,90</span>
                     </div>
                 </div>
+
+                <!-- Cartão do Produto: Hambúrguer Cheddar -->
                 <div class="product-card" onclick="showProductDetail('Hambúrguer Cheddar', 'lanche 5.jpg', 'Hambúrguer com queijo cheddar e cebola caramelizada', 29.90)">
-                    <img src="lanche 5.jpg" alt="Hambúrguer Cheddar" class="product-img">
+                    <img src="imagens/lanche 5.jpg" alt="Hambúrguer Cheddar" class="product-img">
                     <div class="product-info">
                         <h3>Hambúrguer Cheddar</h3>
                         <span class="price">R$ 29,90</span>
                     </div>
                 </div>
+
+                <!-- Cartão do Produto: Hambúrguer BBQ -->
                 <div class="product-card" onclick="showProductDetail('Hambúrguer BBQ', 'lanche 4.jpg', 'Hambúrguer com molho barbecue e bacon', 32.90)">
                     <img src="lanche 4.jpg" alt="Hambúrguer BBQ" class="product-img">
                     <div class="product-info">
@@ -51,6 +64,8 @@
                         <span class="price">R$ 32,90</span>
                     </div>
                 </div>
+
+                <!-- Cartão do Produto: Hambúrguer Vegano -->
                 <div class="product-card" onclick="showProductDetail('Hambúrguer Vegano', 'lanche 3.webp', 'Hambúrguer vegano com grão-de-bico e especiarias', 27.90)">
                     <img src="lanche 3.webp" alt="Hambúrguer Vegano" class="product-img">
                     <div class="product-info">
@@ -58,6 +73,8 @@
                         <span class="price">R$ 27,90</span>
                     </div>
                 </div>
+
+                <!-- Cartão do Produto: Hambúrguer Duplo -->
                 <div class="product-card" onclick="showProductDetail('Hambúrguer Duplo', 'lanche 2.webp', 'Dois hambúrgueres suculentos com todos os acompanhamentos', 39.90)">
                     <img src="lanche 2.webp" alt="Hambúrguer Duplo" class="product-img">
                     <div class="product-info">
@@ -65,6 +82,8 @@
                         <span class="price">R$ 39,90</span>
                     </div>
                 </div>
+
+                <!-- Cartão do Produto: Brownie com Sorvete -->
                 <div class="product-card" onclick="showProductDetail('Brownie com Sorvete', 'sobremesa.webp', 'Brownie de chocolate com sorvete de baunilha', 14.90)">
                     <img src="sobremesa.webp" alt="Brownie com Sorvete" class="product-img">
                     <div class="product-info">
@@ -75,6 +94,7 @@
             </div>
         </section>
 
+        <!-- Seção de Detalhes do Produto -->
         <section class="product-detail-section" id="product-detail">
             <h2>Detalhes do Produto</h2>
             <div class="product-detail-content" id="product-detail-content">
@@ -107,7 +127,7 @@
             </div>
         </div>
 
-        <!-- Minha Conta -->
+        <!-- Modal Minha Conta -->
         <div class="account-modal" id="account-modal">
             <div class="account-modal-content">
                 <span class="close" onclick="closeAccount()">&times;</span>
@@ -119,158 +139,7 @@
         </div>
     </main>
 
-    <script>
-        let cart = [];
-        let orders = []; // Array para armazenar os pedidos finalizados
-
-        function showProductDetail(name, imgSrc, description, price) {
-            const detailSection = document.getElementById("product-detail-content");
-            detailSection.innerHTML = `
-                <img src="${imgSrc}" alt="${name}" class="product-detail-img">
-                <div class="product-detail-info">
-                    <h3>${name}</h3>
-                    <p>${description}</p>
-                    <span class="price">R$ ${price.toFixed(2)}</span>
-                    <button class="add-to-cart" onclick="addToCart('${name}', ${price})">Adicionar ao Carrinho</button>
-                </div>
-            `;
-        }
-
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price });
-            alert(`${productName} foi adicionado ao carrinho!`);
-        }
-
-        function openCart() {
-            const cartItemsContainer = document.getElementById("cart-items");
-            cartItemsContainer.innerHTML = "";
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<p>Seu carrinho está vazio.</p>";
-            } else {
-                let total = 0;
-                cart.forEach(item => {
-                    const itemElement = document.createElement("div");
-                    itemElement.classList.add("cart-item");
-                    itemElement.innerHTML = `
-                        <span>${item.name}</span>
-                        <span>R$ ${item.price.toFixed(2)}</span>
-                    `;
-                    cartItemsContainer.appendChild(itemElement);
-                    total += item.price;
-                });
-                document.getElementById("cart-total-price").textContent = `R$ ${total.toFixed(2)}`;
-            }
-
-            document.getElementById("cart-modal").style.display = "flex";
-        }
-
-        function closeCart() {
-            document.getElementById("cart-modal").style.display = "none";
-        }
-
-        function callWaiter() {
-            document.getElementById("popup").style.display = "flex";
-            setTimeout(() => {
-                closePopup();
-            }, 3000); // Fecha o popup após 3 segundos
-        }
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-
-               function finalizeOrder() {
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio! Adicione produtos antes de finalizar o pedido.");
-                return;
-            }
-
-            // Salvar a ordem na conta
-            orders.push([...cart]); // Adiciona uma cópia do carrinho às ordens finalizadas
-            cart = []; // Limpa o carrinho após finalizar o pedido
-            alert("Seu pedido foi finalizado com sucesso!");
-
-            // Atualizar informações da conta
-            updateAccountInfo();
-            closeCart();
-        }
-
-        function updateAccountInfo() {
-            const accountInfoContainer = document.getElementById("account-info");
-            accountInfoContainer.innerHTML = "";
-
-            if (orders.length === 0) {
-                accountInfoContainer.innerHTML = "<p>Nenhuma compra registrada.</p>";
-            } else {
-                orders.forEach((order, index) => {
-                    const orderElement = document.createElement("div");
-                    orderElement.classList.add("order");
-                    orderElement.innerHTML = `<h4>Pedido ${index + 1}:</h4>`;
-                    
-                    let total = 0;
-                    order.forEach(item => {
-                        const itemElement = document.createElement("div");
-                        itemElement.classList.add("order-item");
-                        itemElement.innerHTML = `${item.name} - R$ ${item.price.toFixed(2)}`;
-                        orderElement.appendChild(itemElement);
-                        total += item.price;
-                    });
-
-                    const totalElement = document.createElement("div");
-                    totalElement.classList.add("order-total");
-                    totalElement.innerHTML = `<strong>Total: R$ ${total.toFixed(2)}</strong>`;
-                    orderElement.appendChild(totalElement);
-                    accountInfoContainer.appendChild(orderElement);
-                });
-            }
-        }
-
-        function openAccount() {
-            updateAccountInfo(); // Atualiza as informações da conta ao abrir
-            document.getElementById("account-modal").style.display = "flex";
-        }
-
-        function closeAccount() {
-            document.getElementById("account-modal").style.display = "none";
-        }
-    </script>
-
-    <style>
-        /* Adicione estilos para a conta e o pedido */
-        .account-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .account-modal-content {
-            background-color: white;
-            position: relative;
-            padding: 20px;
-            border-radius: 5px;
-            width: 400px;
-        }
-
-        .order {
-            margin: 10px 0;
-        }
-
-        .order-item {
-            margin-left: 10px;
-        }
-
-        .order-total {
-            font-weight: bold;
-        }
-
-        
-    </style>
+    <!-- Inclusão do JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
